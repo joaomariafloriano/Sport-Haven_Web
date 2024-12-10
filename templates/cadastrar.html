@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block 'title' %} Sport Haven | Cadastre-se {% endblock 'title' %}</title>
+    <link rel="shortcut icon" href="{% static 'img/logo-02.webp'%}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'home'%}">
+                <img src="{% static 'img/logo-02.webp'%}" alt="Logo da Loja" width="100px">
+            </a>
+        </div>
+        <h3 class="texto-logo">Cadastre-se em nossa loja</h3>
+        
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+            <section class="alert {{message.tags}}">
+                {{message}}
+            </section>                    
+            {% endfor %}
+        {% endif %}
+
+        <form class="form" action="{% url 'cadastrar' %}" method="POST">
+            {% csrf_token %}
+            <div class="field username-field">
+                <div class="input-field">
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" name="username" placeholder="jose01" required>
+                </div>    
+            </div><br>
+            <div class="field nome-field">
+                <div class="input-field">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" placeholder="José" required>
+                </div>    
+            </div><br>
+            <div class="field sobrenome-field">
+                <div class="input-field">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" name="sobrenome" placeholder="Nascimento" required>
+                </div>    
+            </div><br>
+            <div class="field email-field">
+                <div class="input-field">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" placeholder="jose.nascimento@email.com" required>
+                </div>    
+            </div><br>
+            
+            <!-- <div class="field cpf-field">
+                <div class="input-field">
+                    <label for="cpf">CPF</label>
+                    <input type="text" name="cpf" placeholder="000.000.000-00" required>
+                </div>
+            </div><br>
+            <div class="field telefone-field">
+                <div class="input-field">
+                    <label for="telefone">Telefone</label>
+                    <input type="text" name="telefone" placeholder="(00) 00000-0000" required>
+                </div>
+            </div><br>
+            <div class="field endereco-field">
+                <div class="input-field">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" name="endereco" placeholder="Rua do Céu, Nº62, Tibau do Sul - RN, 59178-000" required>
+                </div>
+            </div><br> -->
+        
+            <div class="field create-password">
+                <div class="input-field">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" placeholder="********" required>
+                </div> 
+            </div><br>
+            <div class="field confirm-password">
+                <div class="input-field">
+                    <label for="confirmar_senha">Confirmar senha</label>   
+                    <input type="password" name="confirmar_senha" placeholder="********" required>
+                </div>
+            </div><br>
+            <div class="field button-field input-field">
+                <input type="submit" class="btn btn-indigo" value="Cadastrar">
+            </div>
+            <div class="links">
+                <a href="{% url 'login' %}" class="texto">Já possuo uma conta</a>
+            </div>
+        </form>
+
+
+        <!-- <form class="form" action="{% url 'cadastrar' %}" method="POST">
+            {% csrf_token %}
+            <div class="field username-field">
+                <div class="input-field">
+                    <input type="text" class="password" name="username" placeholder="Digite seu username" required>
+                </div>    
+            </div>
+            <div class="field username-field">
+                <div class="input-field">
+                    <input type="email" class="email" name="email" placeholder="Digite seu E-mail" required>
+                </div>    
+            </div>
+            <div class="field username-field">
+                <div class="input-field">
+                    <input type="text" class="nome" name="nome" placeholder="Digite seu Nome" required>
+                </div>    
+            </div>
+            <div class="field nome-field">
+                <div class="input-field">
+                    <input type="text" class="nome" name="sobrenome" placeholder="Digite seu Sobrenome" required>
+                </div>    
+            </div>
+            <div class="field create-password">
+                <div class="input-field">
+                    <input type="password" class="password" name="senha" placeholder="Digite sua senha" required>
+                </div> 
+            </div>
+            <div class="field confirm-password">
+                <div class="input-field">   
+                    <input type="password" class="password" name="confirmar_senha" placeholder="Confirme sua senha" required>
+                </div>
+            </div>
+
+            <div class="field button-field input-field">
+                <input type="submit" class="btn btn-indigo password" value="Cadastrar">
+            </div>
+            <div class="links">
+                <a href="{% url 'login' %}" class="texto">Já possuo uma conta</a>
+            </div>
+        </form> -->
+    </div>
+</body>
+</html>

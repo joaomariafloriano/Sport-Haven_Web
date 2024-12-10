@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block 'title' %} Sport Haven | Recuperar senha {% endblock 'title' %}</title>
+    <link rel="shortcut icon" href="{% static 'img/logo-02.webp'%}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'home'%}">
+                <img src="{% static 'img/logo-02.webp'%}" alt="Logo da Loja" width="100px">
+            </a>
+        </div>
+        <h3 class="texto-logo">Recuperar senha</h3>
+        <!-- Formulário de Cadastro -->
+        <form action="#" class="form">
+            <!-- Campo de E-mail -->
+            <div class="field email-field">
+                <div class="input-field">
+                    <input type="email" placeholder="Digite seu E-mail" class="email" required/>
+                </div>
+                <!-- Mensagem de Erro para E-mail Inválido -->
+                <span class="error email-error">
+                    <i class="fas fa-exclamation-circle error-icon"></i>
+                    <p class="error-text">Por favor digite um email válido</p>
+                </span>
+            </div>
+            <!-- Botão de Envio -->
+            <div class="field button-field input-field">
+                <a href="{% url 'home' %}">
+                    <input type="submit" value="Enviar"/>
+                </a>
+            </div>
+            <!-- Links para login e esqueci minha senha -->
+            <div>
+                <p class="links">Voltar para a página<a href="{% url 'home' %}">  Inicial</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="./src/js/login.js"></script>
+</body>
+</html>

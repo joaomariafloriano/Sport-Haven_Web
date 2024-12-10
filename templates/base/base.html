@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/logo-02.webp'%}" type="image/x-icon">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a00a6a8426.js" crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <title>{% block 'title' %}{% endblock %}</title>
+    {% block 'head' %}{% endblock 'head' %}
+  </head>
+
+  <body>
+    <!-- Cabeçalho Inicio -->
+    <header>
+      <a href="{% url 'home' %}">
+        <img class="logo" src="{% static 'img/logo-02.webp'%}" alt="Logo da empresa"/> 
+      </a>
+      <h1 class="titulo">Sports Haven</h1>     
+      <div class="redes">
+        <div class="user">
+          <a href="#">
+            <i style="color: #000;" class="bi bi-instagram"></i>
+          </a>
+        </div>
+        <div class="user">
+          <a href="#">
+            <i style="color: #000;" class="bi bi-twitter-x"></i>
+          </a>
+        </div>
+        <div class="user">
+          <a href="#">
+            <i style="color: #000;" class="bi bi-facebook"></i>
+          </a>
+        </div>
+        <div class="user">
+          <a href="#">
+            <i style="color: #000;" class="bi bi-heart"></i>
+          </a>
+        </div>
+        <div class="user">
+          <a href="#">
+            <i style="color: #000;" class="bi bi-cart3"></i>
+          </a>
+        </div>
+        <div class="user">
+          {% if not user.is_authenticated %}
+          <a href="{% url 'login' %}">
+            <i style="color: #000;" class="bi bi-person-circle"></i>
+          </a>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="{% url 'dashboard' %}">
+            <i class="bi bi-person-circle mb-1"></i>
+            Olá, {{ user_name }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <nav class="menu">
+        <a href="{% url 'feminino' %}" class="btmenu">Feminino</a>
+        <a href="{% url 'masculino' %}" class="btmenu">Masculino</a>
+        <a href="{% url 'acessorios' %}" class="btmenu">Acessórios</a>
+        <a href="#" class="btmenu">Artigos</a>
+        <a href="{% url 'central_atendimento' %}" class="btmenu">Atendimento</a>
+        <form class="form">
+            <input class="pesquisar-input" type="texto" placeholder="  Pesquisar" aria-label="Pesquisar">
+            <button class="pesquisar-btn" type="submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+            <!-- <input type="button"> -->
+        </form>
+    </nav>
+
+    <!-- carrossel 1-->
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2000">
+          <img src="{% static 'img/carrossel-01.webp'%}" class="d-block w-100" height="50%" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="{% static 'img/carrossel-02.webp'%}" class="d-block w-100" alt="...">
+        </div>
+        <!-- <div class="carousel-item"  data-bs-interval="2000">
+          <img src="{% static 'img/carrossel-03.webp'%}" class="d-block w-100" alt="...">
+        </div> -->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div> <br>
+      <p class="mais-marcas">
+        <a href="#">NAVAGUE POR MARCAS</a>
+      </p>
+    </div>
+  
+    <div class="carrosselmarcas">
+       <div>
+          <a href="{% url 'olympikus' %}">
+            <img src="{% static 'img/marca-01.png'%}" alt="Imagem 1">
+          </a>
+        </div>
+        <div>
+          <a href="{% url 'puma' %}">
+            <img src="{% static 'img/marca-02.png'%}" alt="Imagem 2">
+          </a>
+        </div>
+        <div>
+          <a href="{% url 'nike' %}">
+            <img src="{% static 'img/marca-03.png'%}" alt="Imagem 3">
+          </a>
+        </div>
+        <div>
+          <a href="{% url 'reebok' %}">
+            <img src="{% static 'img/marca-04.png'%}" alt="Imagem 4">
+          </a>
+        </div>
+        <div>
+          <a href="{% url 'fila' %}">
+            <img src="{% static 'img/marca-05.png'%}" alt="Imagem 5">
+          </a>
+        </div>
+        <div>
+          <a href="{% url 'adidas' %}">
+            <img src="{% static 'img/marca-06.png'%}" alt="Imagem 6">
+          </a>
+        </div>
+    </div>
+    <!-- Cabeçalho Fim-->
+
+    {% block 'body' %}
+    <!-- home.html -->
+    {% endblock 'body' %}
+
+    <footer>
+        <div class="elemento1">
+            <a href="#"><img src="{% static 'img/logo-02.webp'%}" alt="Logo" width="80px"></a>© 2023 Sports Haven.
+        </div>
+        <div class="elemento2">
+            <!-- <a href="https://play.google.com/store/games?hl=pt_BR&gl=US&pli=1" target="_blank"><img src="" alt="Logo Google Play" width="160px" height="50px"></a> -->
+        </div>
+        <div class="elemento3">
+          <!-- <a href=""><i class="fa-brands fa-twitter"></i></a> -->
+          <h4>Forma de pagamento:</h4>
+          <img class="cartoes" src="{% static 'img/cartoes.png'%}" alt="cartões">
+        </div>
+      </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

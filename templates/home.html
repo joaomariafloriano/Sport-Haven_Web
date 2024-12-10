@@ -1,0 +1,152 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block 'title' %}
+Sport Haven | Página Inicial
+{% endblock 'title' %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock 'head' %}
+
+{% block 'body' %}
+
+<main>
+  <h1>{{cont}}</h1>
+  <div class="principal">
+    <div class="card-group">  
+      <div class="card">
+        <div class="card-content">
+          <p class="product-price">Frete Grátis para todo o Brasil</p>
+        </div>
+        <img src="{% static 'img/img inicial/imagem 01.jpg'%}">
+        <div class="card-content">
+          <h2>Tênis Nike Feminino</h2>
+          <!-- <p class="product-description">Descrição do Produto 1</p> -->
+          <p class="product-price">R$ 299,99 no Pix <br> ou 3X de R$: 76,66</p>
+          <a href="#" class="buy-button">Comprar</a>
+        </div>
+      </div>
+                      
+        <div class="card">
+          <div class="card-content">
+            <p class="product-price">Frete Grátis para todo o Brasil</p>
+          </div>
+          <img src="{% static 'img/img inicial/imagem 02.jpg'%}">
+          <div class="card-content">
+            <h2>Tênis Nike MAsculino</h2>
+            <p class="product-price">R$ 299,99 no Pix <br> ou 3X de R$: 76,66</p>
+            <a href="#" class="buy-button">Comprar</a>
+          </div>
+        </div>
+                      
+        <div class="card">
+          <div class="card-content">
+            <p class="product-price">Frete Grátis para todo o Brasil</p>
+          </div>
+          <img src="{% static 'img/img inicial/imagem 03.jpg'%}">
+          <div class="card-content">
+            <h2>Camisa Manga Longa Nike </h2>
+            <p class="product-price">R$ 89,99 no Pix <br> ou 3X de R$: 29,99</p>
+            <a href="#" class="buy-button">Comprar</a>
+          </div>
+        </div>
+                      
+        <div class="card">
+          <div class="card-content">
+            <p class="product-price">Frete Grátis para todo o Brasil</p>
+          </div>
+          <img src="{% static 'img/img inicial/imagem 04.jpg'%}">
+          <div class="card-content">
+            <h2>Boné Reebok</h2>
+            <p class="product-price">R$ 49,99 no Pix <br> ou 3X de R$: 16,66</p>
+            <a href="#" class="buy-button">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grupo 2 -->
+      <div class="card-group">
+      <div class="card">
+        <img src="{% static 'img/img inicial/imagem 05.jpg'%}">
+        <div class="card-content">
+          <h2>Meia Nike Cano Longo</h2>
+          <p class="product-price">R$ 39,99 no Pix <br> ou 3X de R$: 13,33</p>
+          <a href="#" class="buy-button">Comprar</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="{% static 'img/img inicial/imagem 06.jpg'%}">
+        <div class="card-content">
+          <h2>Short Saia Dri fit Puma</h2>
+          <p class="product-price">R$ 59,99 no Pix <br> ou 3X de R$: 19,99</p>
+          <a href="#" class="buy-button">Comprar</a>
+        </div>
+      </div>
+                
+      <div class="card">
+        <img src="{% static 'img/img inicial/imagem 07.jpg'%}">
+        <div class="card-content">
+          <h2>Calça Legue Preta Puma</h2>
+          <p class="product-price">R$ 69,99 no Pix <br> ou 3X de R$: 23,33</p>
+          <a href="#" class="buy-button">Comprar</a>
+        </div>
+      </div>
+                
+      <div class="card">
+        <img src="{% static 'img/img inicial/imagem 08.jpg'%}">
+        <div class="card-content">
+          <h2>Camisa Manga Curta Branca Puma</h2>
+          <p class="product-price">R$ 39,99 no Pix <br> ou 3X de R$: 13,33</p>
+          <a href="#" class="buy-button">Comprar</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Grupo 3 -->
+            <div class="card-group">
+              <div class="card">
+                <img src="{% static 'img/img inicial/imagem 09.jpg'%}">
+                <div class="card-content">
+                  <h2>Bolça Fila</h2>
+                  <p class="product-price">R$ 79,99 no Pix <br> ou 3X de R$: 26,66</p>
+                  <a href="#" class="buy-button">Comprar</a>
+                </div>
+              </div>
+
+              <div class="card">
+                <img src="{% static 'img/img inicial/imagem 10.jpg'%}">
+                <div class="card-content">
+                  <h2>Mochila Puma</h2>
+                  <p class="product-price">R$ 99,99 no Pix <br> ou 3X de R$: 33,33</p>
+                  <a href="#" class="buy-button">Comprar</a>
+                </div>
+              </div>
+
+              <div class="card">
+                <img src="{% static 'img/img inicial/imagem 11.jpg'%}">
+                <div class="card-content">
+                  <h2>Boné Fila</h2>
+                  <p class="product-price">R$ 59,99 no Pix <br> ou 3X de R$: 19,99</p>
+                  <a href="#" class="buy-button">Comprar</a>
+                </div>
+              </div>
+
+              <div class="card">
+                <img src="{% static 'img/img inicial/imagem 12.jpg'%}">
+                <div class="card-content">
+                  <h2>Bolça de Costa Fila</h2>
+                  <p class="product-price">R$39,99 no Pix <br> ou 3X de R$: 13,33</p>
+                  <a href="#" class="buy-button">Comprar</a>
+                </div>
+              </div>
+
+            </div>
+        </div> 
+      </main> 
+      
+{% endblock 'body' %}
+

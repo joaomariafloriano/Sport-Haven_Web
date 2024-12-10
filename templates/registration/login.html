@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block 'title' %} Sport Haven | Entrar {% endblock 'title' %}</title>
+    <link rel="shortcut icon" href="{% static 'img/logo-02.webp'%}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'home'%}">
+                <img src="{% static 'img/logo-02.webp'%}" alt="Logo da Loja" width="100px">
+            </a>
+        </div>
+        <h3 class="texto-logo">Faça seu login em nossa loja</h3>
+        <form method="post" action="#" class="form">
+            {% csrf_token %}
+            <div class="field email-field">
+                <div class="input-field">
+                    {{ form.username.label_tag }} {{ form.username }}
+                    <!-- <input type="email" placeholder="Digite seu E-mail" class="email" required/> -->
+                </div>
+            </div><br>
+            <div class="field create-password">
+                <div class="input-field">
+                    {{ form.password.label_tag }} {{ form.password }}
+                    <!-- <input type="password" placeholder="Digite sua Senha" class="password" required/> -->
+                </div>
+            </div><br>
+            <div class="field button-field input-field">
+                <a href="#">
+                    <input type="submit" value="Entrar"/>
+                </a>
+            </div>
+            <div>
+                <p  class="links">Não possui uma conta?<a href="{% url 'cadastrar' %}"> Crie a sua</a></p>
+                <p class="links">Esqueceu sua senha?<a href="{% url 'recuperar_senha' %}"> Recupere aqui</a></p>
+            </div>
+        </form>
+    </div>
+    <script src="./src/js/login.js"></script>
+</body>
+</html>

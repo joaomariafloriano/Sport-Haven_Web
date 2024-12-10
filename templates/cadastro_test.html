@@ -1,0 +1,64 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block 'title' %} Sport Haven | Cadastre-se {% endblock 'title' %}</title>
+    <link rel="shortcut icon" href="{% static 'img/logo-02.webp'%}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'home'%}">
+                <img src="{% static 'img/logo-02.webp'%}" alt="Logo da Loja" width="100px">
+            </a>
+        </div>
+        <h3 class="texto-logo">Cadastro de Funcionários</h3>
+        <!-- Formulário de Cadastro -->
+        <form method="post" class="form" >
+             {% csrf_token %}
+             <div class="field email-field"></div>
+                <div class="input-field">
+                    {{ form_usuario.nome|add_class:"input-field" }}
+                </div>
+             <div class="field email-field"></div>
+                <div class="input-field">
+                    {{ form_usuario.sobrenome|add_class:"input-field" }}
+                </div>
+             <div class="field email-field"></div>
+                <div class="input-field">
+                    {{ form_usuario.cpf|add_class:"input-field" }}
+                </div>
+             <div class="field email-field"></div>
+                <div class="input-field">
+                    {{ form_usuario.telefone|add_class:"input-field" }}
+                </div>
+             <div class="field email-field"></div>
+                <div class="input-field">
+                    {{ form_usuario.email|add_class:"input-field" }}
+                </div>
+             <div class="field email-field"></div>
+                <div class="input-field">
+                    {{ form_usuario.endereco|add_class:"input-field" }}
+                </div>
+            <!-- Botão de Envio -->
+            <div class="field button-field input-field">
+                    <input type="submit" value="Cadastrar"/>
+            </div>
+            <!-- Links para login e esqueci minha senha -->
+            <div>
+                <p  class="links">Já possui uma conta?<a href="{% url 'login' %}"> Faça seu login</a></p>
+                <p class="links">Esqueceu sua senha?<a href="{% url 'recuperar_senha' %}"> Recupere aqui</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="./src/js/login.js"></script>   
+</body>
+</html>

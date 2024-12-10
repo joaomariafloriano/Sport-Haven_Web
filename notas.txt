@@ -1,0 +1,4 @@
+Dados do super usuário Novo
+- Usuário: admin-clara
+- Email: admin-clara.avelino@email.com
+- Senha: 01997.@
