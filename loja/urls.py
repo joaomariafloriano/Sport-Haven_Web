@@ -1,12 +1,17 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+from . import views 
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('', views.home, name="home"),
-
+#Testanto Path
+    path('saved-items/', views.saved_items_view, name='saved_items'),
+    path('saved-items/edit/<int:item_id>/', views.edit_item_view, name='edit_item'),
+    path('saved-items/delete/<int:item_id>/', views.delete_item_view, name='delete_item'),
+    path('item_cadastrado/', views.item_cadastrado, name='item_cadastrado'),
+#Fim teste Path
     path('dashboard/', views.dashboard, name="dashboard"),
     path('login/', LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),

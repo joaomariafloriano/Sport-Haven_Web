@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import Usuario, Produto, Fornecedor
-from .forms import UsuarioForm, ProdutoForm, FornecedorForm
+from .models import Usuario, Produto, Fornecedor, SavedItem
+from .forms import UsuarioForm, ProdutoForm, FornecedorForm, SavedItemForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User     # Adicionado, para a classe usuário do django
@@ -12,6 +12,54 @@ from django.contrib.auth.decorators import permission_required
 def home(request):
     user_name = request.session.get('user_name', 'Visitante')
     return render(request, 'home.html', {'user_name': user_name})
+
+#Testando Views
+
+def saved_items_view(request):
+    items = SavedItem.objects.all()
+    return render(request, 'saved_items.html', {'items': items})
+
+
+def saved_items_view(request):
+    if request.method == 'POST':
+        form = SavedItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('saved_items')  # Redireciona para a mesma página após salvar o item
+    else:
+        form = SavedItemForm()
+
+    items = SavedItem.objects.all()
+    return render(request, 'saved_items.html', {'items': items, 'form': form})
+
+def item_cadastrado(request):
+    items = SavedItem.objects.all()
+    return render(request, 'item_cadastrado.html', {'items': items})
+
+
+# View para editar um item
+def edit_item_view(request, item_id):
+    item = get_object_or_404(SavedItem, id=item_id)
+    if request.method == 'POST':
+        form = SavedItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('saved_items')
+    else:
+        form = SavedItemForm(instance=item)
+
+    return render(request, 'edit_item.html', {'form': form, 'item': item})
+
+# View para excluir um item
+def delete_item_view(request, item_id):
+    item = get_object_or_404(SavedItem, id=item_id)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('saved_items')
+
+    return render(request, 'delete_item.html', {'item': item})
+
+#Fim teste Views
 
 @login_required 
 def dashboard(request):

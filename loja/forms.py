@@ -1,7 +1,20 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Usuario, Produto, Fornecedor
+from .models import Usuario, Produto, Fornecedor, SavedItem
 
+
+#Testendo Forms
+
+class SavedItemForm(forms.ModelForm):
+    class Meta:
+        model = SavedItem
+        fields = ['name', 'description']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do item'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descrição'}),
+        }
+
+#Fim teste Forms
 class UsuarioForm(ModelForm):
     nome = forms.CharField(
         label="Nome",
