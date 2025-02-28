@@ -1,19 +1,5 @@
 from django.db import models
 
-#Teste Model
-
-
-class SavedItem(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-
-#Fim teste Model
-
 class Usuario(models.Model):  
     nome = models.CharField('Nome', max_length=100)  
     sobrenome = models.CharField('Sobrenome', max_length=100, blank=True)  

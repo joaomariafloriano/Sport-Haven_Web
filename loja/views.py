@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import Usuario, Produto, Fornecedor, SavedItem
-from .forms import UsuarioForm, ProdutoForm, FornecedorForm, SavedItemForm
+from .models import Usuario, Produto, Fornecedor
+from .forms import UsuarioForm, ProdutoForm, FornecedorForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User     # Adicionado, para a classe usuário do django
@@ -8,58 +8,52 @@ from django.contrib import messages             # Adicionado para alerts
 from django.contrib.messages import constants   # Adicionado para alerts
 from django.contrib import auth                 # Adicionado, para autenticação
 from django.contrib.auth.decorators import permission_required
+#API
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import FornecedorSerializers
+
+
+# Teste API
+@api_view(['GET'])
+def FornecedorAPIlistar(request):
+    fornecedor= fornecedor.objects.all()
+    fornecedor_serializer= FornecedorSerializers(fornecedor, many=True)
+    return Response(fornecedor_serializer.data)
+
+@api_view(['PUT'])
+def FornecedorAPIadicionar(request):
+    fornecedor = FornecedorSerializers(data=request.data)
+    if fornecedor.is_valid():
+       fornecedor.save()
+       return Response(fornecedor.data, status=status.HTTP_201_CREATED)
+    
+@api_view(['POST'])
+def FornecedorAPIatualizar(request, id):
+    fornecedor_bd = fornecedor.objects.get(id=id)
+    fornecedor = FornecedorSerializers(data=request.data, instance = fornecedor_bd)
+    if fornecedor.is_valid():
+        fornecedor.save()
+        return Response(fornecedor.data, status=status.HTTP_201_CREATED)
+    
+#@api_view(['DELETE'])
+#def lojaAPIremover(request, id):
+ #   loja_bd = loja.objects.get(id=id)
+ #   loja = LojaSerializers(data=request.data, instance = loja_bd)
+#    if loja_bd:
+  #      loja_bd.delete()
+ #       return Response(status=status.HTTP_202_ACCEPTED)
+ #   else:
+#        return Response(status=status.HTTP_404_NOT_FOUND)
+
+#Fim Teste API
+
+
 
 def home(request):
     user_name = request.session.get('user_name', 'Visitante')
     return render(request, 'home.html', {'user_name': user_name})
-
-#Testando Views
-
-def saved_items_view(request):
-    items = SavedItem.objects.all()
-    return render(request, 'saved_items.html', {'items': items})
-
-
-def saved_items_view(request):
-    if request.method == 'POST':
-        form = SavedItemForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('saved_items')  # Redireciona para a mesma página após salvar o item
-    else:
-        form = SavedItemForm()
-
-    items = SavedItem.objects.all()
-    return render(request, 'saved_items.html', {'items': items, 'form': form})
-
-def item_cadastrado(request):
-    items = SavedItem.objects.all()
-    return render(request, 'item_cadastrado.html', {'items': items})
-
-
-# View para editar um item
-def edit_item_view(request, item_id):
-    item = get_object_or_404(SavedItem, id=item_id)
-    if request.method == 'POST':
-        form = SavedItemForm(request.POST, instance=item)
-        if form.is_valid():
-            form.save()
-            return redirect('saved_items')
-    else:
-        form = SavedItemForm(instance=item)
-
-    return render(request, 'edit_item.html', {'form': form, 'item': item})
-
-# View para excluir um item
-def delete_item_view(request, item_id):
-    item = get_object_or_404(SavedItem, id=item_id)
-    if request.method == 'POST':
-        item.delete()
-        return redirect('saved_items')
-
-    return render(request, 'delete_item.html', {'item': item})
-
-#Fim teste Views
 
 @login_required 
 def dashboard(request):
