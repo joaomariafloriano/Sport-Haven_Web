@@ -40,11 +40,11 @@ class Produto(models.Model):
         return self.nome  
 
 class Fornecedor(models.Model):  
-    cnpj = models.CharField('CNPJ', max_length=15, unique=True)  
+    cnpj = models.CharField('CNPJ', max_length=15, unique=True, null=True)  
     nome = models.CharField('Nome do Fornecedor', max_length=100)  
-    telefone = models.CharField('Telefone', max_length=15, blank=True)  
-    email = models.EmailField('Email', max_length=100, blank=True)
-    endereco = models.TextField('Endereço', max_length=500)  
+    telefone = models.CharField('Telefone', max_length=15, blank=True, null=True)  
+    email = models.EmailField('Email', max_length=100, blank=True, null=True)
+    endereco = models.TextField('Endereço', max_length=500, null=True)  
 
     def __str__(self):  
         return self.nome  

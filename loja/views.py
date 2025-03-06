@@ -18,7 +18,7 @@ from .serializers import FornecedorSerializers
 # Teste API
 @api_view(['GET'])
 def FornecedorAPIlistar(request):
-    fornecedor= fornecedor.objects.all()
+    fornecedor= Fornecedor.objects.all()
     fornecedor_serializer= FornecedorSerializers(fornecedor, many=True)
     return Response(fornecedor_serializer.data)
 
@@ -31,21 +31,21 @@ def FornecedorAPIadicionar(request):
     
 @api_view(['POST'])
 def FornecedorAPIatualizar(request, id):
-    fornecedor_bd = fornecedor.objects.get(id=id)
+    fornecedor_bd = Fornecedor.objects.get(id=id)
     fornecedor = FornecedorSerializers(data=request.data, instance = fornecedor_bd)
     if fornecedor.is_valid():
         fornecedor.save()
         return Response(fornecedor.data, status=status.HTTP_201_CREATED)
     
-#@api_view(['DELETE'])
-#def lojaAPIremover(request, id):
- #   loja_bd = loja.objects.get(id=id)
- #   loja = LojaSerializers(data=request.data, instance = loja_bd)
-#    if loja_bd:
-  #      loja_bd.delete()
- #       return Response(status=status.HTTP_202_ACCEPTED)
- #   else:
-#        return Response(status=status.HTTP_404_NOT_FOUND)
+@api_view(['DELETE'])
+def FornecedorAPIremover(request, id):
+    fornecedor_bd = Fornecedor.objects.get(id=id)
+    fornecedor = FornecedorSerializers(data=request.data, instance = fornecedor_bd)
+    if fornecedor_bd:
+        fornecedor_bd.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 #Fim Teste API
 
